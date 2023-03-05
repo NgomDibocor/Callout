@@ -1,13 +1,13 @@
 public with sharing class LegacyQuoteFile {
     /** 
-     * @author DN
-     * @date 21/10/2022
-     * @description Get all legay quotes for account
-     * param idRCU
+     * @author 
+     * @date XX/XX/XXX
+     * @description 
+     * param idQuote
     */
     @AuraEnabled
     public static ResultDataModel getLegacyQuotes(String idQuote){
-        if(String.isBLank(idQuote)) throw new CustomException('idRCU Argument Undefined !'); 
+        if(String.isBLank(idQuote)) throw new CustomException('idQuote Argument Undefined !'); 
 
         ResultDataModel result;
         HttpService myHttp = new HttpService();
