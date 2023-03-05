@@ -1,11 +1,11 @@
 public virtual class HttpService {
     public class Response{
-        public Integer Code { get; set; }
-        public String Result { get; set; }
+        @AuraEnabled public Integer statusCode { get; set; }
+        @AuraEnabled public String responseBody { get; set; }
         
-        public Response(Integer code, String result){
-            this.Code = code;
-            this.Result = result;
+        public Response(Integer statusCode, String responseBody){
+            this.statusCode = statusCode;
+            this.responseBody = responseBody;
         }
     }
     
