@@ -9,41 +9,41 @@ public virtual class HttpService {
         }
     }
     
-    protected Map<string, string> CustomHeader;
+    protected Map<string, string> customHeader;
     
     public HttpService(){
-        CustomHeader = new Map<string, string>();
+        customHeader = new Map<string, string>();
     }
 	
     public void setHeader(string key, string value){
-        this.CustomHeader.put(key, value);
+        this.customHeader.put(key, value);
     }
     
-    public Response Get(String calloutEndpoint, String api){
+    public Response doGet(String calloutEndpoint, String api){
         HttpRequest request = new HttpRequest();
         request.setEndpoint('callout:' + calloutEndpoint + api);
         request.setMethod('GET');
         request.setTimeout(120000);
-        this.SetHeaders(request);
+        this.setHeaders(request);
         
         return HandleResponse(request);
     }
     
-    public Response Post(String calloutEndpoint, String api, Object requestObject){
+    public Response doPost(String calloutEndpoint, String api, Object requestObject){
         HttpRequest request = new HttpRequest();
         request.setEndpoint('callout:' + calloutEndpoint + api);
         request.setMethod('POST');
         request.setBody(JSON.serialize(requestObject, true));
         request.setTimeout(120000);
-        this.SetHeaders(request);
+        this.setHeaders(request);
         
         return HandleResponse(request);
     }
     
-    private void SetHeaders(HttpRequest request){
+    private void setHeaders(HttpRequest request){
         request.setHeader('Content-Type', 'application/json');
-        for (String key : this.CustomHeader.keySet()){
-            request.setHeader(key, this.CustomHeader.get(key));
+        for (String key : this.customHeader.keySet()){
+            request.setHeader(key, this.customHeader.get(key));
         }
     }
     
